@@ -75,17 +75,52 @@ class Api extends AbstractHelper {
         return $this->client->getBody();
     }
 
+    /**
+     * @param $endpoint
+     * @return string
+     */
     public function put($endpoint) {
         $this->prepareAuth();
         $this->client->send('PUT', $this->buildUrl($endpoint));
 
         return $this->client->getBody();
     }
+
+    /**
+     * @param $endpoint
+     * @return string
+     */
+    public function options($endpoint) {
+        $this->prepareAuth();
+        $this->client->send('OPTIONS', $this->buildUrl($endpoint));
+
+        return $this->client->getBody();
+    }
+
+    /**
+     * @param $endpoint
+     * @param $params
+     * @return string
+     */
+    public function patch($endpoint, $params) {
+        $this->prepareAuth();
+        $this->client->send('PATCH',$this->buildUrl($endpoint), $params);
+
+        return $this->client->getBody();
+    }
+
+    public function delete($endpoint) {
+        $this->prepareAuth();
+        $this->client->send('DELETE', $this->buildUrl($endpoint));
+
+        return $this->client->getBody();
+    }
+
     /**
      * @param $endpoint
      * @return string
      */
     private function buildUrl($endpoint) {
-        return $this->surveyHelper->getDomain() . $endpoint;
+        return $this->surveyHelper->getDomain() . $this->buildUrl($endpoint);
     }
 }

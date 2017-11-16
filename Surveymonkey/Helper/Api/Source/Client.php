@@ -50,7 +50,7 @@ class Client extends \Magento\Framework\HTTP\Client\Curl {
         }
 
         // Add params for POST and PUT
-        if ($method == 'POST' || $method == 'PUT') {
+        if ($method == 'POST' || $method == 'PUT'|| $method == 'PATCH') {
             $this->curlOption(CURLOPT_POSTFIELDS, is_array($params) ? http_build_query($params) : $params);
         }
 

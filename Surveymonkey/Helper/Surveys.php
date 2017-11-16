@@ -13,11 +13,24 @@ class Surveys extends Api {
      * endoint for surveys
      */
     const SURVEYS = '/v3/surveys';
+
+    /**
+     *
+     */
+    const SHOW_SURVEY = '/v3/surveys/%s';
+
     /**
      * @var \Wagento\Surveymonkey\Helper\Users
      */
     private $userName;
 
+    /**
+     * Surveys constructor.
+     * @param Context $context
+     * @param Data $surveyHelper
+     * @param Api\Source\Client $client
+     * @param Users $users
+     */
     public function __construct
     (
         Context $context,
@@ -35,13 +48,19 @@ class Surveys extends Api {
      * @return mixed
      *
      */
-    public function getSurveys() {
+    public function listSurveys() {
         $response = $this->get(self::SURVEYS);
         $data = json_decode($response);
 
         return $data;
     }
 
+    /**
+     * Create empty survey
+     * @param $surveyTitle
+     * @param bool $nickname
+     * @return mixed
+     */
     public function createEmptySurvey($surveyTitle, $nickname = false) {
         if($nickname) {
             $this->userName = $nickname;
@@ -54,6 +73,48 @@ class Surveys extends Api {
 
         $response = $this->post(self::SURVEYS, json_encode($params));
         $data = json_decode($response, true);
+
+        return $data;
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public function createSurvey($params) {
+        $response = $this->post(self::SURVEYS, json_encode($params));
+        $data = json_decode($response, true);
+
+        return $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOptionsSurvey() {
+        $response = $this->options(self::SURVEYS);
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $surveyId
+     * @return mixed
+     */
+    public function getSurvey($surveyId) {
+        $endpoint = sprintf(self::SHOW_SURVEY, $surveyId);
+        $response = $this->get($endpoint);
+
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    public function deleteSurvey($surveyId) {
+        $endpoint = sprintf(self::SHOW_SURVEY, $surveyId);
+        $response = $this->delete($endpoint);
+        $data = json_decode($response);
 
         return $data;
     }

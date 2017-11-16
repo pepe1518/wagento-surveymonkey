@@ -51,8 +51,13 @@ class Test extends \Magento\Framework\App\Action\Action
 
 //        $data = $this->survey->getSurveys();
 //        \Zend_Debug::dump($data);
-        $survey = $this->survey->createEmptySurvey('test from magetno ce x2 jose', 'pepe1518');
-        \Zend_Debug::dump($survey);
+//        $survey = $this->survey->createEmptySurvey('test from magetno ce x2 jose', 'pepe1518');
+//        $survey = $this->survey->listSurveys();
+//        \Zend_Debug::dump($survey);
+
+//        $suveryDeleted = $this->survey->deleteSurvey('126338263');
+//        $suveryDeleted = $this->survey->listSurveys();
+//        \Zend_Debug::dump($suveryDeleted);
         die('enter to my controller');
     }
 }
