@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Wagento. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="wagento" translate="label">
+            <label>Wagento</label>
+        </tab>
+        <section id="wagento" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Survey Monkey Connect</label>
+            <tab>wagento</tab>
+            <resource>Wagento_Surveymonkey::surveymonkey_configuration</resource>
+            <group id="surveymonkey" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="endpoint" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Endpoint Url</label>
+                </field>
+                <field id="client_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Client Id</label>
+                    <comment>API Unique Identifier</comment>
+                </field>
+                <field id="secret" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>secret</label>
+                    <comment>API secret</comment>
+                </field>
+                <field id="token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Token</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
