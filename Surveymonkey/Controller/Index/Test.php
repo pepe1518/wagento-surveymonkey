@@ -51,7 +51,7 @@ class Test extends \Magento\Framework\App\Action\Action
 
 //        $data = $this->survey->getSurveys();
 //        \Zend_Debug::dump($data);
-        $survey = $this->survey->createEmptySurvey('test from magetno ce');
+        $survey = $this->survey->createEmptySurvey('test from magetno ce x2 jose', 'pepe1518');
         \Zend_Debug::dump($survey);
         die('enter to my controller');
     }

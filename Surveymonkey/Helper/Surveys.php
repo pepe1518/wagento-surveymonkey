@@ -22,7 +22,7 @@ class Surveys extends Api {
     (
         Context $context,
         \Wagento\Surveymonkey\Helper\Data $surveyHelper,
-        \Magento\Framework\HTTP\Client\Curl $client,
+        \Wagento\Surveymonkey\Helper\Api\Source\Client $client,
         \Wagento\Surveymonkey\Helper\Users $users
     )
     {
@@ -48,7 +48,8 @@ class Surveys extends Api {
         }
 
         $params = [
-            'title' => $surveyTitle
+            'title' => $surveyTitle,
+            'nickname' => $this->userName
         ];
 
         $response = $this->post(self::SURVEYS, json_encode($params));
