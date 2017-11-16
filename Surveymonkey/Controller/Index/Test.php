@@ -18,6 +18,8 @@ class Test extends \Magento\Framework\App\Action\Action
     private $connector;
 
     private $users;
+
+    private $survey;
     /**
      * Test constructor.
      * @param Context $context
@@ -28,7 +30,8 @@ class Test extends \Magento\Framework\App\Action\Action
         \Wagento\Surveymonkey\Helper\Data $helper,
         \Wagento\Surveymonkey\Helper\Api\Api $api,
         \Wagento\Surveymonkey\Helper\Api\Connector $connector,
-        \Wagento\Surveymonkey\Helper\Users $users
+        \Wagento\Surveymonkey\Helper\Users $users,
+        \Wagento\Surveymonkey\Helper\Surveys $surveys
     )
     {
         parent::__construct($context);
@@ -36,6 +39,7 @@ class Test extends \Magento\Framework\App\Action\Action
         $this->api = $api;
         $this->connector = $connector;
         $this->users = $users;
+        $this->survey = $surveys;
     }
 
     /**
@@ -44,28 +48,11 @@ class Test extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         // TODO: Implement execute() method.
-        $user = $this->users->getGroups();
-        \Zend_Debug::dump($user);
 
-        $endpoint = '/v3/users/me';
-        echo 'entro para hacer la conexxion de prueba';
-        echo '</br>';
-        $response = $this->api->get($endpoint);
-        $data = json_decode($response, true);
-        \Zend_Debug::dump($data);
-
-//        echo  $this->connector->oauthDialog('https://api.surveymonkey.com/api_console/oauth2callback', 'dBbtd7ofSnaLJ9nbp45Kpw');
-        echo  $this->connector->oauthDialog('https://www.surveymonkey.com', 'dBbtd7ofSnaLJ9nbp45Kpw');
-        $code = 'code';
-        $clientId = 'dBbtd7ofSnaLJ9nbp45Kpw';
-        $clientSecret = '125699914029469241349669471812850604842';
-        $redirectUri = 'https://www.surveymonkey.com';
-        $endpoint = '/oauth/token';
-
-
-        echo '</br>';
-        echo $this->connector->getToken($code, $clientId, $clientSecret, $redirectUri, $endpoint);
-        echo '</br>';
+//        $data = $this->survey->getSurveys();
+//        \Zend_Debug::dump($data);
+        $survey = $this->survey->createEmptySurvey('test from magetno ce');
+        \Zend_Debug::dump($survey);
         die('enter to my controller');
     }
 }

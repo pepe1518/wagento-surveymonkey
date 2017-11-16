@@ -48,12 +48,11 @@ class Surveys extends Api {
         }
 
         $params = [
-            'title' => $surveyTitle,
-            'nickname' => $this->userName,
+            'title' => $surveyTitle
         ];
 
-        $response = $this->post(self::SURVEYS, $params);
-        $data = json_decode($response, ture);
+        $response = $this->post(self::SURVEYS, json_encode($params));
+        $data = json_decode($response, true);
 
         return $data;
     }

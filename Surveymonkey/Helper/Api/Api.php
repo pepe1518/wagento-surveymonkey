@@ -14,14 +14,14 @@ class Api extends AbstractHelper {
     protected $surveyHelper;
 
     /**
-     * @var \Magento\Framework\HTTP\Client\Curl
+     * @var \Wagento\Surveymonkey\Helper\Api\Source\Client
      */
     protected $client;
 
     public function __construct(
         Context $context,
         \Wagento\Surveymonkey\Helper\Data $surveyHelper,
-        \Magento\Framework\HTTP\Client\Curl $client
+        \Wagento\Surveymonkey\Helper\Api\Source\Client $client
     )
     {
         parent::__construct($context);
@@ -48,7 +48,8 @@ class Api extends AbstractHelper {
      */
     public function post($endpoint, $params = []) {
         $this->prepareAuth();
-        $this->client->post($this->buildUrl($endpoint), $params);
+        $this->client->send('POST', $this->buildUrl($endpoint), $params);
+
         return $this->client->getBody();
     }
 
@@ -58,7 +59,8 @@ class Api extends AbstractHelper {
      * @return string
      */
     protected function oauthPost($endpoint, $params = []) {
-        $this->client->post($this->buildUrl($endpoint), $params);
+        $this->client->send('POST', $this->buildUrl($endpoint), $params);
+
         return $this->client->getBody();
     }
 
@@ -68,10 +70,17 @@ class Api extends AbstractHelper {
      */
     public function get($endpoint) {
         $this->prepareAuth();
-        $this->client->get($this->buildUrl($endpoint));
+        $this->client->send('GET', $this->buildUrl($endpoint));
+
         return $this->client->getBody();
     }
 
+    public function put($endpoint) {
+        $this->prepareAuth();
+        $this->client->send('PUT', $this->buildUrl($endpoint));
+
+        return $this->client->getBody();
+    }
     /**
      * @param $endpoint
      * @return string
