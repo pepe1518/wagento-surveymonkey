@@ -121,6 +121,6 @@ class Api extends AbstractHelper {
      * @return string
      */
     private function buildUrl($endpoint) {
-        return $this->surveyHelper->getDomain() . $this->buildUrl($endpoint);
+        return $this->surveyHelper->getDomain() . $endpoint;
     }
 }
