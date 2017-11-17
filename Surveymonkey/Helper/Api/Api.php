@@ -46,7 +46,7 @@ class Api extends AbstractHelper {
      * @param array $params
      * @return string
      */
-    public function post($endpoint, $params = []) {
+    protected function post($endpoint, $params = []) {
         $this->prepareAuth();
         $this->client->send('POST', $this->buildUrl($endpoint), $params);
 
@@ -68,7 +68,7 @@ class Api extends AbstractHelper {
      * @param $endpoint
      * @return string
      */
-    public function get($endpoint) {
+    protected function get($endpoint) {
         $this->prepareAuth();
         $this->client->send('GET', $this->buildUrl($endpoint));
 
@@ -79,9 +79,9 @@ class Api extends AbstractHelper {
      * @param $endpoint
      * @return string
      */
-    public function put($endpoint) {
+    protected function put($endpoint, $params) {
         $this->prepareAuth();
-        $this->client->send('PUT', $this->buildUrl($endpoint));
+        $this->client->send('PUT', $this->buildUrl($endpoint), $params);
 
         return $this->client->getBody();
     }
@@ -90,7 +90,7 @@ class Api extends AbstractHelper {
      * @param $endpoint
      * @return string
      */
-    public function options($endpoint) {
+    protected function options($endpoint) {
         $this->prepareAuth();
         $this->client->send('OPTIONS', $this->buildUrl($endpoint));
 
@@ -102,14 +102,18 @@ class Api extends AbstractHelper {
      * @param $params
      * @return string
      */
-    public function patch($endpoint, $params) {
+    protected function patch($endpoint, $params) {
         $this->prepareAuth();
         $this->client->send('PATCH',$this->buildUrl($endpoint), $params);
 
         return $this->client->getBody();
     }
 
-    public function delete($endpoint) {
+    /**
+     * @param $endpoint
+     * @return string
+     */
+    protected function delete($endpoint) {
         $this->prepareAuth();
         $this->client->send('DELETE', $this->buildUrl($endpoint));
 

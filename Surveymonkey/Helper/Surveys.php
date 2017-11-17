@@ -7,6 +7,10 @@ namespace Wagento\Surveymonkey\Helper;
 use Magento\Framework\App\Helper\Context;
 use Wagento\Surveymonkey\Helper\Api\Api;
 
+/**
+ * Class Surveys
+ * @package Wagento\Surveymonkey\Helper
+ */
 class Surveys extends Api {
     // surveymonkey: surveys, pages an questions endpoints
     /**
@@ -19,6 +23,10 @@ class Surveys extends Api {
      */
     const SHOW_SURVEY = '/v3/surveys/%s';
 
+    /**
+     *
+     */
+    const DETAILS_SURVEY = '/v3/surveys/%s/details';
     /**
      * @var \Wagento\Surveymonkey\Helper\Users
      */
@@ -111,9 +119,38 @@ class Surveys extends Api {
         return $data;
     }
 
+    /**
+     * @param $surveyId
+     * @return mixed
+     */
     public function deleteSurvey($surveyId) {
         $endpoint = sprintf(self::SHOW_SURVEY, $surveyId);
         $response = $this->delete($endpoint);
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $surveId
+     * @param $params
+     * @return mixed
+     */
+    public function updateSurvey($surveId, $params) {
+        $endpoint = sprintf(self::SHOW_SURVEY, $surveId);
+        $response = $this->put($endpoint, $params);
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $surveyId
+     * @return mixed
+     */
+    public function getDetailSurvey($surveyId) {
+        $endpoint = sprintf(self::DETAILS_SURVEY, $surveyId);
+        $response = $this->get($endpoint);
         $data = json_decode($response);
 
         return $data;
