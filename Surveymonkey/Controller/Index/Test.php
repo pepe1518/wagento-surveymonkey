@@ -48,6 +48,11 @@ class Test extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         // TODO: Implement execute() method.
+        $num = 5;
+        $location = 456;
+
+        $format = 'There are %d monkeys in the %s';
+        echo sprintf($format, $num, $location); die;
 
 //        $data = $this->survey->getSurveys();
 //        \Zend_Debug::dump($data);

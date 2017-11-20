@@ -1,7 +1,7 @@
 <?php
 
 /**
- * https://github.com/SurveyMonkey/public_api_docs/blob/master/includes/_surveys.md
+ * https://github.com/SurveyMonkey/public_api_docs/blob/master/includes/_collectors.md
  */
 namespace Wagento\Surveymonkey\Helper;
 
@@ -23,6 +23,59 @@ class Collectors extends Api {
      *
      */
     const COLLECTOR_DATA = '/v3/collectors/%s';
+
+    /**
+     *
+     */
+    const SURVEY_COLLECTOR_MESSAGE = '/v3/collectors/%s/messages';
+
+    /**
+     *
+     */
+    const COLLECTOR_MESSAGE = '/v3/collectors/%d/messages/%s';
+
+    /**
+     *
+     */
+    const SEND_COLLECTOR_MESSAGE = '/v3/collectors/%d/messages/%s/send';
+
+    /**
+     *
+     */
+    const BULK_MESSAGE = '/v3/collectors/%d/messages/%s/recipients/bulk';
+
+    /**
+     *
+     */
+    const COLLECTOR_RECIPIENTS = '/v3/collectors/%s/recipients';
+
+    /**
+     *
+     */
+    const RECIPIENTS_DETAILS = '/v3/collectors/%d}/recipients/%s';
+
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    private $date;
+
+    /**
+     * Collectors constructor.
+     * @param Context $context
+     * @param Data $surveyHelper
+     * @param Api\Source\Client $client
+     */
+    public function __construct
+    (
+        Context $context,
+        \Wagento\Surveymonkey\Helper\Data $surveyHelper,
+        \Wagento\Surveymonkey\Helper\Api\Source\Client $client,
+        \Magento\Framework\Stdlib\DateTime\DateTime $date
+    )
+    {
+        parent::__construct($context, $surveyHelper, $client);
+        $this->date = $date;
+    }
 
     /**
      * @param $surveyId
@@ -76,6 +129,100 @@ class Collectors extends Api {
         $response = $this->put($endpoint, json_encode($data));
         $data = json_decode($response);
 
-        return $data
+        return $data;
     }
+
+    /**
+     * @param $collectorId
+     * @return mixed
+     */
+    public function getMessages($collectorId) {
+        $endpoint = sprintf(self::SURVEY_COLLECTOR_MESSAGE, $collectorId);
+        $response = $this->get($endpoint);
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $collectorId
+     * @param $params
+     * @return mixed
+     */
+    public function createMessage($collectorId, $params) {
+        $endpoint = sprintf(self::SURVEY_COLLECTOR_MESSAGE, $collectorId);
+        $response = $this->post($endpoint, json_encode($params));
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $collectorId
+     * @param $messageId
+     * @param $params
+     * @return mixed
+     */
+    public function updateMessage($collectorId, $messageId, $params) {
+        $endpoint = sprintf(self::COLLECTOR_MESSAGE, $collectorId, $messageId);
+        $response = $this->put($endpoint, json_encode($params));
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $collectorId
+     * @param $messageId
+     * @return mixed
+     */
+    public function sendMessage($collectorId, $messageId) {
+        $endpoint = sprintf(self::SEND_COLLECTOR_MESSAGE, $collectorId, $messageId);
+        $param = [
+            'scheduled_date' => $this->date->gmtDate()
+        ];
+        $response = $this->post($endpoint, json_encode($param));
+        $data = json_decode($response);
+
+        return $data;
+     }
+
+    /**
+     * @param $collectorId
+     * @param $messageId
+     * @param $params
+     * @return mixed
+     */
+     public function bulkMessage($collectorId, $messageId, $params) {
+        $endpoint = sprintf(self::BULK_MESSAGE, $collectorId, $messageId);
+        $response = $this->post($endpoint, json_encode($params));
+        $data = json_decode($response);
+
+        return $data;
+     }
+
+    /**
+     * @param $collectorId
+     * @return mixed
+     */
+     public function getRecipients($collectorId) {
+         $endpoint = sprintf(self::COLLECTOR_RECIPIENTS, $collectorId);
+         $response = $this->get($endpoint);
+         $data = json_decode($response);
+
+         return $data;
+     }
+
+    /**
+     * @param $collectorId
+     * @param $recipientId
+     * @return mixed
+     */
+     public function getRecipientDetail($collectorId, $recipientId) {
+         $endpoint = sprintf(self::RECIPIENTS_DETAILS, $collectorId, $recipientId);
+         $response = $this->get($endpoint);
+         $data = json_decode($response);
+
+         return $data;
+     }
 }
