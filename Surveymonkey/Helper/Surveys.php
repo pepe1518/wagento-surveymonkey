@@ -27,29 +27,21 @@ class Surveys extends Api {
      *
      */
     const DETAILS_SURVEY = '/v3/surveys/%s/details';
+
+    /**
+     *
+     */
+    const SURVEY_TEMPLATE = '/v3/survey_templates';
+
+    /**
+     *
+     */
+    const SURVEY_LANGUAES = '/v3/survey_languages';
+
     /**
      * @var \Wagento\Surveymonkey\Helper\Users
      */
     private $userName;
-
-    /**
-     * Surveys constructor.
-     * @param Context $context
-     * @param Data $surveyHelper
-     * @param Api\Source\Client $client
-     * @param Users $users
-     */
-    public function __construct
-    (
-        Context $context,
-        \Wagento\Surveymonkey\Helper\Data $surveyHelper,
-        \Wagento\Surveymonkey\Helper\Api\Source\Client $client,
-        \Wagento\Surveymonkey\Helper\Users $users
-    )
-    {
-        parent::__construct($context, $surveyHelper, $client);
-        $this->userName = $users->getUserMe();
-    }
 
     /**
      * Returns a list of surveys owned or shared with the authenticated user
@@ -138,7 +130,7 @@ class Surveys extends Api {
      */
     public function updateSurvey($surveId, $params) {
         $endpoint = sprintf(self::SHOW_SURVEY, $surveId);
-        $response = $this->put($endpoint, $params);
+        $response = $this->put($endpoint, json_encode($params));
         $data = json_decode($response);
 
         return $data;
@@ -152,6 +144,31 @@ class Surveys extends Api {
         $endpoint = sprintf(self::DETAILS_SURVEY, $surveyId);
         $response = $this->get($endpoint);
         $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @param $category
+     * @return mixed
+     */
+    public function getSurveyTemplates($category) {
+        $params = [
+            'category' => $category
+        ];
+
+        $response = $this->get(self::SURVEY_TEMPLATE, json_encode($params));
+        $data = json_decode($response);
+
+        return $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguages() {
+        $response = $this->get(self::SURVEY_LANGUAES);
+        $data =json_decode($response);
 
         return $data;
     }

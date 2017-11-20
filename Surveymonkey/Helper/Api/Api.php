@@ -68,9 +68,9 @@ class Api extends AbstractHelper {
      * @param $endpoint
      * @return string
      */
-    protected function get($endpoint) {
+    protected function get($endpoint, $params) {
         $this->prepareAuth();
-        $this->client->send('GET', $this->buildUrl($endpoint));
+        $this->client->send('GET', $this->buildUrl($endpoint), $params);
 
         return $this->client->getBody();
     }
