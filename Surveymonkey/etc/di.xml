@@ -12,4 +12,5 @@
     <!-- Magento 2.0 -->
     <preference for="Magento\Framework\Api\Search\ReportingInterface"
                 type="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting"/>
+
 </config>

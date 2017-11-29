@@ -24,10 +24,10 @@
         </item>
     </argument>
 
-    <dataSource name="jose">
+    <dataSource name="surveymonkey_survey_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Wagento\Surveymonkey\Ui\Component\DataProvider</argument>
-            <argument name="name" xsi:type="string">pepe</argument>
+            <argument name="name" xsi:type="string">surveymonkey_survey_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
