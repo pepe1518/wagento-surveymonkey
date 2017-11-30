@@ -35,12 +35,13 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="indexField" xsi:type="string">id</item>
+                        <item name="indexField" xsi:type="string">survey_id</item>
                     </item>
                 </item>
             </argument>
         </argument>
     </dataSource>
+
     <container name="listing_top">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -51,7 +52,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="storageConfig" xsi:type="array">
-                        <item name="namespace" xsi:type="string">surveymonkey_survey_listing</item>
+                        <item name="namespace" xsi:type="string">zendesk_ticket_listing</item>
                     </item>
                 </item>
             </argument>
@@ -61,7 +62,7 @@
                 <item name="config" xsi:type="array">
                     <item name="columnsData" xsi:type="array">
                         <item name="provider" xsi:type="string">
-                            surveymonkey_survey_listing.surveymonkey_survey_listing.surveymonkey_survey_columns
+                            zendesk_ticket_listing.zendesk_ticket_listing.zendesk_ticket_columns
                         </item>
                     </item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
@@ -72,7 +73,7 @@
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">surveymonkey_survey_listing.surveymonkey_survey_listing.surveymonkey_survey_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">zendesk_ticket_listing.zendesk_ticket_listing.zendesk_ticket_columns.ids</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
                     <item name="indexField" xsi:type="string">id</item>
                 </item>
@@ -82,10 +83,10 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="surveymonkey/survey/massDelete"/>
+                        <item name="url" xsi:type="url" path="zendesk/ticket/massDelete"/>
                         <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete surveys</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected surveys?</item>
+                            <item name="title" xsi:type="string" translate="true">Delete Tickets</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected Tickets?</item>
                         </item>
                     </item>
                 </argument>
@@ -95,14 +96,16 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">surveymonkey_survey_listing.surveymonkey_survey_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">zendesk_ticket_listing.zendesk_ticket_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.paging</item>
                     </item>
-                    <item name="selectProvider" xsi:type="string">surveymonkey_survey_listing.surveymonkey_survey_listing.surveymonkey_survey_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">zendesk_ticket_listing.zendesk_ticket_listing.zendesk_ticket_columns.ids</item>
                 </item>
             </argument>
         </paging>
     </container>
+
+
     <columns name="surveymonkey_survey_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -162,50 +165,41 @@
             </argument>
         </column>
 
-        <column name="subject">
+        <column name="title">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">surveymonkey_surveymonkey/js/grid/columns/reference</item>
-                    <item name="label" xsi:type="string" translate="true">Subject</item>
+                    <!--<item name="component" xsi:type="string">surveymonkey_surveymonkey/js/grid/columns/reference</item>-->
+                    <item name="label" xsi:type="string" translate="true">Title</item>
                 </item>
             </argument>
         </column>
 
-        <column name="email">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Email</item>
-                </item>
-            </argument>
-        </column>
-
-        <column name="type">
+        <column name="nickname">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="label" xsi:type="string" translate="true">Nickname</item>
                 </item>
             </argument>
         </column>
 
-        <column name="status">
+        <column name="url">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="label" xsi:type="string" translate="true">Url</item>
                 </item>
             </argument>
         </column>
 
-        <column name="updated_at">
+        <actionsColumn name="actions" class="Wagento\Sponsors\Ui\Component\Listing\Sponsors\Column\Actions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Updated At</item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">id</item>
                 </item>
             </argument>
-        </column>
-
+        </actionsColumn>
     </columns>
 </listing>

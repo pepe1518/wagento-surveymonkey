@@ -52,13 +52,13 @@ class Test extends \Magento\Framework\App\Action\Action
         $location = 456;
 
         $format = 'There are %d monkeys in the %s';
-        echo sprintf($format, $num, $location); die;
+        echo sprintf($format, $num, $location);
 
-//        $data = $this->survey->getSurveys();
-//        \Zend_Debug::dump($data);
+        $data = $this->survey->listSurveys();
+        \Zend_Debug::dump($data);  die;
 //        $survey = $this->survey->createEmptySurvey('test from magetno ce x2 jose', 'pepe1518');
-        $survey = $this->survey->listSurveys();
-        \Zend_Debug::dump($survey);
+//        $survey = $this->survey->listSurveys();
+//        \Zend_Debug::dump($survey);
 
 //        $suveryDeleted = $this->survey->deleteSurvey('126338263');
 //        $suveryDeleted = $this->survey->listSurveys();

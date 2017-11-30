@@ -11,6 +11,8 @@ use Magento\Framework\App\RequestInterface;
 
 class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider {
 
+    private $surveys;
+
     public function __construct
     (
         $name,
@@ -20,20 +22,31 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
         SearchCriteriaBuilder $searchCriteriaBuilder,
         RequestInterface $request,
         FilterBuilder $filterBuilder,
+        \Wagento\Surveymonkey\Helper\Surveys $surveys,
         array $meta = [],
         array $data = []
     )
     {
         parent::__construct(
-            $name,
-            $primaryFieldName,
-            $requestFieldName,
-            $reporting,
-            $searchCriteriaBuilder,
-            $request,
-            $filterBuilder,
-            $meta,
-            $data
+                $name,
+                $primaryFieldName,
+                $requestFieldName,
+                $reporting,
+                $searchCriteriaBuilder,
+                $request,
+                $filterBuilder,
+                $meta,
+                $data
         );
+        $this->surveys = $surveys;
+    }
+
+    public function getData()
+    {
+        return [];
+    }
+
+    private function getSorting($surveys, $sorting) {
+
     }
 }
