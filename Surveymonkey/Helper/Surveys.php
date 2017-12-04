@@ -50,9 +50,9 @@ class Surveys extends Api {
      */
     public function listSurveys() {
         $response = $this->get(self::SURVEYS);
-        $data = json_decode($response);
+        $data = json_decode($response, true);
 
-        return $data;
+        return isset($data['data']) ? $data['data'] : [];
     }
 
     /**
