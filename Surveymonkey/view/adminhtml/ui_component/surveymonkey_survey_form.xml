@@ -24,7 +24,6 @@
         </item>
     </argument>
 
-
     <dataSource name="surveymonkey_survey_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Wagento\Surveymonkey\Model\Survey\DataProvider</argument>
@@ -45,90 +44,36 @@
         </argument>
     </dataSource>
 
-    <!--<fieldset name="general">-->
-        <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-            <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="label" xsi:type="string" translate="true">survey Information</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</item>&ndash;&gt;-->
-        <!--&lt;!&ndash;</argument>&ndash;&gt;-->
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">survey Information</item>
+            </item>
+        </argument>
 
-        <!--&lt;!&ndash;<field name="requester">&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="dataType" xsi:type="string">text</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="formElement" xsi:type="string">input</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="label" xsi:type="string">Requester Email</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="validation" xsi:type="array">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<item name="required-entry" xsi:type="boolean">true</item>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<item name="validate-email" xsi:type="boolean">true</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
-        <!--&lt;!&ndash;</field>&ndash;&gt;-->
+        <field name="survey_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string">Survey Name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
 
-        <!--&lt;!&ndash;<field name="requester_name">&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="dataType" xsi:type="string">text</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="formElement" xsi:type="string">input</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="label" xsi:type="string">Requester Name</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
-        <!--&lt;!&ndash;</field>&ndash;&gt;-->
+        <field name="subject">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string">Subject</item>
+                </item>
+            </argument>
+        </field>
 
-        <!--&lt;!&ndash;<field name="website_id">&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="options" xsi:type="object">Magento\Store\Model\ResourceModel\Website\Collection</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="label" xsi:type="string" translate="true">Requester Website</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="dataType" xsi:type="string">number</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="formElement" xsi:type="string">select</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="validation" xsi:type="array">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<item name="required-entry" xsi:type="boolean">true</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
-        <!--&lt;!&ndash;</field>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<field name="subject">&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="dataType" xsi:type="string">text</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="formElement" xsi:type="string">input</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="label" xsi:type="string">Subject</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="validation" xsi:type="array">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<item name="required-entry" xsi:type="boolean">true</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
-        <!--&lt;!&ndash;</field>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<field name="status">&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="options" xsi:type="object">Magento\Store\Model\ResourceModel\Website\Collection</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="label" xsi:type="string" translate="true">Send Welcome Email From</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="dataType" xsi:type="string">number</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="formElement" xsi:type="string">select</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="validation" xsi:type="array">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<item name="required-entry" xsi:type="boolean">true</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
-        <!--&lt;!&ndash;</field>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<field name="description">&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="data" xsi:type="array">&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="config" xsi:type="array">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="dataType" xsi:type="string">text</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="formElement" xsi:type="string">textarea</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="label" xsi:type="string">Description</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<item name="validation" xsi:type="array">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<item name="required-entry" xsi:type="boolean">true</item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;</item>&ndash;&gt;-->
-            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
-        <!--&lt;!&ndash;</field>&ndash;&gt;-->
-    <!--</fieldset>-->
+    </fieldset>
 
 </form>
