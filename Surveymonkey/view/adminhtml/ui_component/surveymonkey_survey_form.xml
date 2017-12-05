@@ -64,12 +64,12 @@
             </argument>
         </field>
 
-        <field name="subject">
+        <field name="template_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="label" xsi:type="string">Subject</item>
+                    <item name="label" xsi:type="string">ID template</item>
                 </item>
             </argument>
         </field>
