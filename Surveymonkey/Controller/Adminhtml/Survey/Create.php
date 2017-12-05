@@ -36,12 +36,12 @@ class Create extends Action {
             return $resultRedirect->setPath('*/*/edit');
         }
 
-        $data = $this->getRequest()->getParams();
+        $data = $this->getRequest()->getParam('general');
 
-        if(isset($data["general"])){
-            $data = array_merge($data, $data["general"]);
-            unset($data["general"]);
-        }
+//        if(isset($data["general"])){
+//            $data = array_merge($data, $data["general"]);
+//            unset($data["general"]);
+//        }
 
         $surveyName = trim($data['survey_name']);
 
@@ -51,11 +51,11 @@ class Create extends Action {
             $payload['from_template_id'] = trim($data['template_id']);
         }
 
-        if ($survey = $this->surveys->createSurvey($payload)) {
-            $this->messageManager->addSuccessMessage('Ticket Created successfully');
+        if ($this->surveys->createSurvey($payload)) {
+            $this->messageManager->addSuccessMessage('Survey Created successfully');
         }
         else {
-            $this->messageManager->addErrorMessage('Error while you are creating a new ticket, Please try again');
+            $this->messageManager->addErrorMessage('Error while you are creating a new survey, Please try again');
         }
 
         return $resultRedirect->setPath('*/*');

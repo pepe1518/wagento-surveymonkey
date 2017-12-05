@@ -83,10 +83,10 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="zendesk/ticket/massDelete"/>
+                        <item name="url" xsi:type="url" path="surveymonkey/survey/massdelete"/>
                         <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete Tickets</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected Tickets?</item>
+                            <item name="title" xsi:type="string" translate="true">Delete Survey</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected surveys?</item>
                         </item>
                     </item>
                 </argument>
